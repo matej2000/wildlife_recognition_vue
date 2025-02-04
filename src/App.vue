@@ -11,7 +11,7 @@ import Footer from './components/Footer.vue';
 
   <RouterView />
 
-  <Footer class="w-full mt-100"></Footer>
+  <Footer class="mt-100"></Footer>
 </template>
 
 <style scoped>
