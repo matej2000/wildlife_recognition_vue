@@ -4,7 +4,7 @@
         <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+            <button @click="mobile_menu = !mobile_menu" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
             <!--
@@ -33,7 +33,7 @@
             <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="#" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">Dashboard</a>
-                <a href="#" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">Projects</a>
+                <a href="#" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">Models</a>
                 <a href="#" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">About</a>
             </div>
             </div>
@@ -47,12 +47,12 @@
             <!-- Profile dropdown -->
             <div class="relative content-center m-auto align-center flex flex-1 items-center justify-center font-bold">
                 <!-- <button type="button" class="mr-2 text-black hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black rounded-lg text-sm px-5 py-2.5 text-center">Log-in</button> -->
-                <button class="font-bold cursor-pointer mr-2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm text-black rounded-lg group bg-gradient-to-br from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100group-hover:from-teal-300 group-hover:to-lime-300">
-                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
+                <button class="hover:text-gray-600 font-bold cursor-pointer mr-2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm text-black rounded-lg group bg-gradient-to-br from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 group-hover:from-teal-300 group-hover:to-lime-300">
+                    <span class="relative px-3 sm:px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
                     Log-in
                     </span>
                 </button>
-                <button type="button" class="cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 focus:ring-4 focus:outline-none rounded-lg text-sm px-5 py-2.5 text-center">Sign-up</button>            <!-- <div>
+                <button type="button" class="hover:text-gray-600 cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 rounded-lg text-sm px-3 sm:px-5 py-2.5 text-center">Sign-up</button>            <!-- <div>
                 <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
@@ -82,14 +82,21 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pt-2 pb-3">
+    <div class="sm:hidden" id="mobile-menu" @click="set_visible">
+        <div class="space-y-1 px-2 pt-2 pb-3" v-if="mobile_menu">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Models</a>
         <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
-        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+        <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
         </div>
     </div>
     </nav>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const mobile_menu = ref(false)
+
+</script>
