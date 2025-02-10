@@ -1,6 +1,6 @@
 <template>
     <div class="pt-20">
-      <div class="px-8">
+      <div class="px-8 max-w-[1000px] m-auto">
         <div class="text-center text-3xl font-bold pb-4">
           Model Capabilities
         </div>
@@ -10,7 +10,7 @@
           </p>
         </div>
       </div>
-      <div class="px-8 pt-15 pb-16 overflow-x-auto">
+      <div class="px-8 pt-15 pb-16 overflow-x-auto max-w-[1500px] m-auto">
         <table class="w-full text-sm text-center whitespace-nowrap">
           <thead class="uppercase border-b border-gray-200">
             <tr>

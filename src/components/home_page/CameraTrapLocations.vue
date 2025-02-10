@@ -1,6 +1,6 @@
 <template>
     <div class="bg-black px-8">
-      <div class="text-center mt-20 pt-20 mb-10 text-2xl font-bold text-gray-50">
+      <div class="text-center pt-20 mb-10 text-2xl font-bold text-gray-50">
         Over 200 Camera Traps Deployed Across Slovenia
       </div>
       <!-- <div class="text-white text-sm pt-4 text-center">
@@ -13,7 +13,7 @@
       </div>
       -->
       
-      <div class="w-[90%] m-auto pl-10 invert">
+      <div class="w-[90%] m-auto invert max-w-[1000px]">
         <img src="/si-01.svg"/>
       </div>
     </div>

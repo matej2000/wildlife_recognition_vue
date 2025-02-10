@@ -48,11 +48,11 @@
             <div class="relative content-center m-auto align-center flex flex-1 items-center justify-center font-bold">
                 <!-- <button type="button" class="mr-2 text-black hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black rounded-lg text-sm px-5 py-2.5 text-center">Log-in</button> -->
                 <a href="/login" class="hover:text-gray-600 font-bold cursor-pointer mr-2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm text-black rounded-lg group bg-gradient-to-br from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 group-hover:from-teal-300 group-hover:to-lime-300">
-                    <span class="relative px-3 sm:px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
+                    <span class="relative px-2 text-xs sm:text-sm sm:px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
                     Log-in
                     </span>
                 </a>
-                <a href="/register" type="button" class="hover:text-gray-600 cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 rounded-lg text-sm px-3 sm:px-5 py-2.5 text-center">Sign-up</a>            <!-- <div>
+                <a href="/register" type="button" class="hover:text-gray-600 cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Sign-up</a>            <!-- <div>
                 <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
