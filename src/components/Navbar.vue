@@ -118,7 +118,6 @@ export default {
     const handleClickOutside = (event) => {
         if (popup_user.value && !popup_user.value.contains(event.target)) {
               user_info.value = false;
-              console.log("Dela")
         }
         if (mobile_menu_ref.value && !mobile_menu_ref.value.contains(event.target)) {
               mobile_menu.value = false;
