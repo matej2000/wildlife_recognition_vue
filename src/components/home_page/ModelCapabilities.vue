@@ -18,7 +18,7 @@
               <th class="px-2 pt-1.5 pb-3">Weakly small</th>
               <th class="px-2 pt-1.5 pb-3">Weakly large</th>
               <th class="px-2 pt-1.5 pb-3">Point small</th>
-              <th class="bg-gradient-to-r from-teal-100 to-lime-100 rounded-t-xl">Point large</th>
+              <th class="bg-blue-200 rounded-t-xl">Point large</th>
               <th class="px-2 pt-1.5 pb-3">DeepFauna</th>
             </tr>
           </thead>
@@ -28,7 +28,7 @@
               <td class="px-2 pt-1.5 pb-3">Weakly supervised</td>
               <td class="px-2 pt-1.5 pb-3">Weakly supervised</td>
               <td class="px-2 pt-1.5 pb-3">Point supervised</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">Point supervised</td>
+              <td class="bg-blue-200">Point supervised</td>
               <td class="px-2 pt-1.5 pb-3">Supervised</td>
             </tr>
             <tr >
@@ -36,7 +36,7 @@
               <td class="px-2 pt-1.5 pb-3">ResNet18</td>
               <td class="px-2 pt-1.5 pb-3">ResNet50</td>
               <td class="px-2 pt-1.5 pb-3">ResNet18</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">ResNet50</td>
+              <td class="bg-blue-200">ResNet50</td>
               <td class="px-2 pt-1.5 pb-3">Supervised</td>
             </tr>
             <tr>
@@ -44,7 +44,7 @@
               <td class="px-2 pt-1.5 pb-3">RT-DETR</td>
               <td class="px-2 pt-1.5 pb-3">RT-DETR</td>
               <td class="px-2 pt-1.5 pb-3">RT-DETR</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">RT-DETR</td>
+              <td class="bg-blue-200">RT-DETR</td>
               <td class="px-2 pt-1.5 pb-3">Faster RCNN</td>
             </tr>
             
@@ -53,7 +53,7 @@
               <td class="px-2 pt-1.5 pb-3">20M</td>
               <td class="px-2 pt-1.5 pb-3">40M</td>
               <td class="px-2 pt-1.5 pb-3">20M</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">40M</td>
+              <td class="bg-blue-200">40M</td>
               <td class="px-2 pt-1.5 pb-3">?</td>
             </tr>
             <tr class="border-t border-gray-200">
@@ -61,7 +61,7 @@
               <td class="px-2 pt-1.5 pb-3"></td>
               <td class="px-2 pt-1.5 pb-3"></td>
               <td class="px-2 pt-1.5 pb-3">0.26</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">0.3</td>
+              <td class="bg-blue-200">0.3</td>
               <td class="px-2 pt-1.5 pb-3"></td>
             </tr>
             <tr>
@@ -69,7 +69,7 @@
               <td class="px-2 pt-1.5 pb-3"></td>
               <td class="px-2 pt-1.5 pb-3">0.42</td>
               <td class="px-2 pt-1.5 pb-3">0.38</td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100">0.51</td>
+              <td class="bg-blue-200">0.51</td>
               <td class="px-2 pt-1.5 pb-3">0.6</td>
             </tr>
             <tr>
@@ -77,7 +77,7 @@
               <td class="px-2 pt-1.5 pb-3">0.3</td>
               <td class="px-2 pt-1.5 pb-3">0.4</td>
               <td class="px-2 pt-1.5 pb-3"></td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100"></td>
+              <td class="bg-blue-200"></td>
               <td class="px-2 pt-1.5 pb-3"></td>
             </tr>
             <tr>
@@ -85,7 +85,7 @@
               <td class="px-2 pt-1.5 pb-3">0.3</td>
               <td class="px-2 pt-1.5 pb-3">0.4</td>
               <td class="px-2 pt-1.5 pb-3"></td>
-              <td class="bg-gradient-to-r from-teal-100 to-lime-100 rounded-b-xl"></td>
+              <td class="bg-blue-200 rounded-b-xl"></td>
               <td class="px-2 pt-1.5 pb-3"></td>
             </tr>
           </tbody>
