@@ -12,11 +12,12 @@ import HeroSection from '@/components/home_page/HeroSection.vue';
   <main class="w-full">
 
     <HeroSection/>
+    
+    <CameraTrapLocations />
 
     <a id="models"></a>
     <Models />
     
-    <CameraTrapLocations />
 
     <ModelCapabilities />
    

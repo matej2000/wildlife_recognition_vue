@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8 pb-20 pt-20 bg-gray-50">
+    <div class="px-8 pb-20 pt-20 bg-gray-300">
       <div class="text-3xl text-center font-bold mb-10 ">
         Available models
       </div>

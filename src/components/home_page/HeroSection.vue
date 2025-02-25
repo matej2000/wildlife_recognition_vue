@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar.vue';
         <!-- <div class="w-full max-w-[900px] h-[500px] mt-[300px] sm:max-w-[1100px] sm:h-[700px] sm:mt-[400px] md:mt-[300px] align-center float-right bg-[url(goat_rock_box3.png)] bg-cover md:mt-0mt-20 bg-[50%_50%] md:bg-[50%_50%]"> -->
         <!-- <div class="w-full xl:w-2/3 h-1/2  xl:max-w-none absolute bottom-0 right-0 align-center float-right bg-[url(goat_rock_box3.png)] bg-cover bg-[50%_50%] md:bg-[50%_0%]"> -->
 
-        <div class="flex flex-col items-center lg:block lg:items-start justify-center h-2/3 m-auto lg:absolute top-[30vh] top-[15%]a sm:top-[15%] md:top-[20%] left-[15%] lg:left-0 lg:top-1/6 lg:ml-30 w-2/3 text-center lg:text-left lg:w-1/3">
+        <div class="z-10 flex flex-col items-center lg:block lg:items-start justify-center h-2/3 m-auto lg:absolute top-[30vh] top-[15%]a sm:top-[15%] md:top-[20%] left-[15%] lg:left-0 lg:top-1/6 lg:ml-30 w-2/3 text-center lg:text-left lg:w-1/3">
             <div class="text-3xl sm:text-5xl xl:text-6xl font-bold">
                 <p>Annotate thousands of animal images in joust minutes</p>
             </div>
