@@ -8,7 +8,6 @@ import HeroSection from '@/components/home_page/HeroSection.vue';
 </script>
 
 <template>
-
   <main class="w-full">
 
     <HeroSection/>
@@ -18,9 +17,9 @@ import HeroSection from '@/components/home_page/HeroSection.vue';
     <a id="models"></a>
     <Models />
     
-
+    <a id="capabilities"></a>
     <ModelCapabilities />
-   
+  
     <AnimalSpecies />
   </main>
 </template>
