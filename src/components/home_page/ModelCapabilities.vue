@@ -54,39 +54,39 @@
               <td class="px-2 pt-1.5 pb-3">40M</td>
               <td class="px-2 pt-1.5 pb-3">20M</td>
               <td class="bg-blue-200">40M</td>
-              <td class="px-2 pt-1.5 pb-3">?</td>
+              <td class="px-2 pt-1.5 pb-3">40M</td>
             </tr>
             <tr class="border-t border-gray-200">
               <td class="px-2 pt-2 pb-1">mAP</td>
-              <td class="px-2 pt-1.5 pb-3"></td>
-              <td class="px-2 pt-1.5 pb-3"></td>
+              <td class="px-2 pt-1.5 pb-3">0.18</td>
+              <td class="px-2 pt-1.5 pb-3">0.24</td>
               <td class="px-2 pt-1.5 pb-3">0.26</td>
-              <td class="bg-blue-200">0.3</td>
-              <td class="px-2 pt-1.5 pb-3"></td>
+              <td class="bg-blue-200">0.36</td>
+              <td class="px-2 pt-1.5 pb-3">0.45</td>
             </tr>
             <tr>
               <td class="px-2 pt-2 pb-1">mAP_0.5</td>
-              <td class="px-2 pt-1.5 pb-3"></td>
+              <td class="px-2 pt-1.5 pb-3">0.36</td>
               <td class="px-2 pt-1.5 pb-3">0.42</td>
               <td class="px-2 pt-1.5 pb-3">0.38</td>
-              <td class="bg-blue-200">0.51</td>
+              <td class="bg-blue-200">0.52</td>
               <td class="px-2 pt-1.5 pb-3">0.6</td>
             </tr>
             <tr>
               <td class="px-2 pt-2 pb-1">AR_1</td>
               <td class="px-2 pt-1.5 pb-3">0.3</td>
               <td class="px-2 pt-1.5 pb-3">0.4</td>
-              <td class="px-2 pt-1.5 pb-3"></td>
-              <td class="bg-blue-200"></td>
-              <td class="px-2 pt-1.5 pb-3"></td>
+              <td class="px-2 pt-1.5 pb-3">0.4</td>
+              <td class="bg-blue-200">0.43</td>
+              <td class="px-2 pt-1.5 pb-3">0.52</td>
             </tr>
             <tr>
               <td class="px-2 pt-2 pb-1">AR_100</td>
               <td class="px-2 pt-1.5 pb-3">0.3</td>
               <td class="px-2 pt-1.5 pb-3">0.4</td>
-              <td class="px-2 pt-1.5 pb-3"></td>
-              <td class="bg-blue-200 rounded-b-xl"></td>
-              <td class="px-2 pt-1.5 pb-3"></td>
+              <td class="px-2 pt-1.5 pb-3">o.4</td>
+              <td class="bg-blue-200 rounded-b-xl">0.54</td>
+              <td class="px-2 pt-1.5 pb-3">0.65</td>
             </tr>
           </tbody>
         </table>
