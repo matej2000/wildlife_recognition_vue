@@ -60,14 +60,18 @@
                     <a href="/register" type="button" class="hover:bg-white border-2 border-black cursor-pointer font-bold text-black bg-blue-200 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Sign-up</a>           
                 </div>
                 <div v-show="authStore.isAuthenticated" ref="popup_user">
-                    <button @click="user_info = !user_info" type="button" class="border-1 cursor-pointer relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                    <button @click="user_info = !user_info" type="button" class="size-7 overflow-hidden border-2 cursor-pointer relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
-                        <img class="size-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 bg-gray-300 fill-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                        </svg>
+
+                        <!-- <img class="size-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                     </button>
                 </div>
 
-            <div v-if="authStore.isAuthenticated && user_info" class="absolute right-0 z-10 px-1 mt-38 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <div v-if="authStore.isAuthenticated && user_info" class="absolute right-0 z-50 px-1 mt-38 w-48 origin-top-right rounded-xl bg-white py-1 ring-1 shadow-lg ring-black/5 focus:outline-hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <a href="#" class="w-full hover:bg-gray-100 rounded-xl block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
                 <a href="#" class="w-full hover:bg-gray-100 rounded-xl block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                 <button @click="logout" class="rounded-xl text-left cursor-pointer hover:bg-gray-100 w-full block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</button>
@@ -76,6 +80,9 @@
         </div>
         </div>
     </div>
+    <!-- <div v-if="authStore.isAuthenticated && user_info" @click="user_info = false" class="fixed w-screen h-screen top-0 left-0 z-9"></div> -->
+    <div v-if="authStore.isAuthenticated && user_info" @click="user_info = false" class="absolute w-screen h-screen top-0 left-0 z-40"></div>
+
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <!-- <div class="absolute w-screen top-[64px] left-0 z-50" id="mobile-menu">
