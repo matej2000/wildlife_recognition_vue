@@ -4,7 +4,7 @@
         <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
-            <button ref="mobile_menu_ref" @click="mobile_menu = !mobile_menu" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+            <button ref="mobile_menu_ref" @click="mobile_menu = !mobile_menu" type="button" class="relative inline-flex items-center justify-center cursor-pointer rounded-md p-2 text-black border-2 border-transparent hover:bg-white hover:border-black focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
             <!--
@@ -34,9 +34,9 @@
             <div class="hidden sm:ml-6 sm:block content-center">
             <div class="flex space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">Dashboard</a>
-                <a href="/#models" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">Models</a>
-                <a href="/#capabilities" class="rounded-md px-3 py-2 text-sm font-bold text-black hover:bg-black hover:text-white">About</a>
+                <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-bold text-black border-2 border-transparent hover:bg-white hover:border-black">Dashboard</a>
+                <a href="/#models" class="rounded-md px-3 py-2 text-sm font-bold text-black border-2 border-transparent hover:bg-white hover:border-black">Models</a>
+                <a href="/#capabilities" class="rounded-md px-3 py-2 text-sm font-bold text-black border-2 border-transparent hover:bg-white hover:border-black">About</a>
             </div>
             </div>
         </div>
@@ -49,21 +49,21 @@
             <!-- Profile dropdown -->
             <div class="relative content-center m-auto align-center flex flex-1 items-center justify-center font-bold">
                 <!-- <button type="button" class="mr-2 text-black hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black rounded-lg text-sm px-5 py-2.5 text-center">Log-in</button> -->
-                <div v-if="!authStore.isAuthenticated">
+                <div v-if="!authStore.isAuthenticated" class="flex flex-row">
                     <!-- <a href="/login" class="hover:text-gray-600 font-bold cursor-pointer mr-2 relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm text-black rounded-lg group bg-gradient-to-br from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 group-hover:from-teal-300 group-hover:to-lime-300">
                         <span class="relative px-2 text-xs sm:text-sm sm:px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md">
                         Log-in
                         </span>
                     </a> -->
-                    <a href="/login" type="button" class="hover:bg-white hover:text-black border-black mr-2 border-2 cursor-pointer font-bold text-white bg-black rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Log-in</a>           
+                    <a href="/login" type="button" class="hover:bg-white hover:text-black border-black mr-2 border-2 cursor-pointer font-bold text-white bg-black rounded-lg text-sm px-3 sm:px-5 py-2.5 text-center ">Log-in</a>           
                     <!-- <a href="/register" type="button" class="hover:text-gray-600 cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Sign-up</a>            -->
-                    <a href="/register" type="button" class="hover:bg-white border-2 border-black cursor-pointer font-bold text-black bg-blue-200 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Sign-up</a>           
+                    <a href="/register" type="button" class="hidden sm:block hover:bg-white border-2 border-black cursor-pointer font-bold text-black bg-blue-200 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Sign-up</a>           
                 </div>
                 <div v-show="authStore.isAuthenticated" ref="popup_user">
-                    <button @click="user_info = !user_info" type="button" class="size-7 overflow-hidden border-2 cursor-pointer relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                    <button @click="user_info = !user_info" type="button" class="size-9 overflow-hidden border-1 cursor-pointer relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">Open user menu</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 bg-gray-300 fill-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 bg-white fill-black">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                         </svg>
 
