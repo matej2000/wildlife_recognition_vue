@@ -3,8 +3,8 @@
     <div class="relative lg:flex lg:flex-row min-h-screen">
       <!-- Start side menu -->
       <!-- transition-transform -translate-x-full sm:translate-x-0-->
-      <div v-show="showSettings" class="flex flex-row absolute lg:w-full h-full lg:h-auto lg:static lg:flex-none lg:basis-70 z-30">
-        <div class="h-full bg-gray-100 basis-70  border-r-1 border-gray-300 px-2 ">
+      <div v-show="showSettings" class="w-full flex flex-row absolute lg:w-full h-full lg:h-auto lg:static lg:flex-none lg:basis-70 z-30">
+        <div class="h-full bg-gray-50 basis-70  border-r-1 border-gray-300 px-3 ">
           <div class="flex flex-row justify-between pt-2 border-b pb-1 border-gray-300">
             <div class="text-2xl font-bold">
               Settings
@@ -18,32 +18,37 @@
 
           </div>
           <div>
-            <p class="mt-5 ml-5 font-bold">Select classes to detect:</p>
-            <div class="flex flex-row flex-wrap gap-3 justify-center mt-3">
+            <p class="mt-5 ml-2 font-bold">Select classes to detect:</p>
+            <div class="grid grid-cols-2 gap-2 justify-center mt-3">
               <div v-for="(label, index) in labels" :key="index" class="flex-1 text-sm">
-                <div class="px-4 py-2 bg-white rounded-xl flex flex-row items-center gap-3 justify-between">
+                <div v-if="selected_labels[index]" @click="selected_labels[index] = false" class="cursor-pointer px-4 py-2 bg-blue-200 rounded-xl flex flex-row items-center gap-3 justify-between">
                   <p>{{ label }}</p>
-                  <input checked :id="index" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-white-100 border-gray-300 rounded-sm focus:ring-blue-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                  </svg>
+                </div>
+                <div v-else @click="selected_labels[index] = true" class="cursor-pointer text-center hover:bg-gray-300 m-auto px-4 py-2 bg-gray-200 rounded-xl flex flex-row items-center gap-3 justify-center">
+                  <p>{{ label }}</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="w-full">
-            <p class="mt-10 ml-5 font-bold">Maximum number of detections:</p>
+            <p class="mt-10 ml-2 font-bold">Maximum number of detections:</p>
             <div class="flex flex-row justify-center gap-5 items-center mt-2">
-              <input id="default-range" type="range" v-model="maxDetections" min="1" max="100" class="w-[70%]  h-2 bg-white rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-              <p>{{ maxDetections }}</p>
+              <input id="default-range" type="range" v-model="maxDetections" min="1" max="100" class="w-[70%]  h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+              <input type="number" v-model="maxDetections"  min="1" max="100" class="w-[50px]">
             </div>
           </div>
           <div>
-            <p class="mt-10 ml-5 font-bold">Confidence threshold:</p>
+            <p class="mt-10 ml-2 font-bold">Confidence threshold:</p>
             <div class="flex flex-row justify-center gap-5 items-center mt-2">
-              <input id="default-range" type="range" v-model="confThreshold" min="0" max="10" class="w-[70%]  h-2 bg-white rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-              <p>{{ parseFloat(confThreshold) / 10.0 }}</p>
+              <input id="default-range" type="range" v-model="confThreshold" min="0" max="1" step="0.1" class="w-[70%]  h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
+              <input type="number" v-model="confThreshold" step="0.1"  min="0" max="1" class="w-[50px]">
             </div>
           </div>
         </div>
-        <div @click="showSettings = false" class="opacity-30 bg-black flex-grow z-30 lg:opacity-0 lg:z-0 lg:w-0">
+        <div id="overlay" @click="showSettings = false" class="opacity-30 bg-black flex-grow z-30 lg:opacity-0 lg:z-0 lg:w-0">
         </div>
       </div>
       <!-- END side menu -->
@@ -270,15 +275,16 @@ export default {
       "Squirrel",
       "Wild boar"
     ];
+    const selected_labels = ref([true, true, true, true, true, true, true, true, true, true])
     const maxDetections = ref("50")
-    const confThreshold = ref("5")
+    const confThreshold = ref("0.5")
     const showSettings = ref(window.innerWidth >= 1024);
 
     return {
       authStore, router, loaded_file, preview, bar, div_preview, 
       dropzone, current_color, error, error2, success, result_img, show_dropzone, 
       show_results, show_dropMenu, selectedModel, labels, maxDetections, confThreshold,
-      showSettings
+      showSettings, selected_labels
     }
   },
   methods: {
