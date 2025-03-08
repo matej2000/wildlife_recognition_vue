@@ -20,8 +20,8 @@
       
       <!-- <div class="w-[90%] m-auto max-w-[1000px] bg-[url(/si-04_gray.svg)] bg-no-repeat bg-center"> -->
       <div class="relative w-full sm:w-[90%] h-[65vh] max-h-[700px] m-auto max-w-[1000px] bg-no-repeat bg-center">
-        <img class="absolute max-w-[90%] max-h-[65vh] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2" src="/si-04_gray.svg"/>
-        <img class=" absolute max-w-[90%] max-h-[65vh] top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 fade-in" v-fade-in src="/si-04_highlited2.png"/>
+        <img class="absolute max-w-[90%] max-h-[65vh] top-[50%] left-[50%] -translate-x-3/7 -translate-y-1/2" src="/si-04_gray.svg"/>
+        <img class=" absolute max-w-[90%] max-h-[65vh] top-[50%] left-[50%] -translate-x-3/7 -translate-y-1/2 fade-in" v-fade-in src="/si-04_highlited2.png"/>
       </div>
     </div>
 </template>
