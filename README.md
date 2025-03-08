@@ -22,15 +22,23 @@ Extension of my master's thesis, which enables easy use of models trained during
 
 **Desktop view:**
 
-<video controls width="960" height="540">
+<!-- ![Desktop view](assets/desktop_view.gif) -->
+
+<!-- <video controls width="960" height="540">
   <source src="assets/2025-03-06 22-44-23.mp4" type="video/mp4">
-</video>
+</video> -->
+
+<img src="assets/desktop_view.gif" width="960" />
 
 **Mobile view:**
 
-<video controls width="375">
-  <source src="assets/mobile_view.mp4" type="video/mp4">
-</video>
+<!-- <video controls width="375">
+  <source src="assets/mobile_view.gif" type="video/mp4">
+</video> -->
+
+<img src="assets/mobile_view.gif" width="375" />
+
+<!-- ![Mobile view](assets/mobile_view.gif) -->
 
 ## Website screenshots
 
