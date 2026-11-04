@@ -1,12 +1,23 @@
 services:
-  nuxt:
+  frontend:
+    container_name: frontend
     build:
       context: ./frontend
-      target: production
     ports:
       - "5173:5173"
     volumes:
       - ./frontend/.:/app
       - /app/node_modules
+
+  backend:
+    build: ./backend
+    container_name: backend
+    expose:
+      - "8000"
+    volumes:
+      - sqlite_data:/data
     environment:
-      NODE_ENV: production
+      DATABASE_PATH: /data/db.sqlite3
+
+volumes:
+  sqlite_data:
