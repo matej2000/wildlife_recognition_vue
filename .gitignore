@@ -32,5 +32,6 @@ coverage
 *.pt
 
 __pycache__
+.vscode
 
 data/
