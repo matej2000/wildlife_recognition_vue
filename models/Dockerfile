@@ -15,12 +15,14 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application
-COPY model1 ./model1/
+COPY . .
+
+COPY megadetector/MDV6-yolov9e.pt .
 
 COPY main.py .
 
 # Expose FastAPI port
-EXPOSE 8080
+EXPOSE 8000
 
 # Start FastAPI
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
