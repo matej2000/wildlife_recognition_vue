@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-@nr))1-+7!^4uo1y)25i0%7ib8=^h9@mj#sq=+yftruf3$3mx$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["backend"]
+ALLOWED_HOSTS = ["backend", "localhost"]
 
 
 # Application definition
@@ -38,13 +38,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'sim',
-    'corsheaders',
-    
+    "sim",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware", # Add this line at the top. Position matters.
+    "corsheaders.middleware.CorsMiddleware",  # Add this line at the top. Position matters.
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -58,7 +57,7 @@ ROOT_URLCONF = "wildlife_ai.urls"
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]  # We add your frontend URL here.
-CSRF_TRUSTED_ORIGINS = ['http://localhost:5173']  # We add your frontend URL here.
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]  # We add your frontend URL here.
 
 TEMPLATES = [
     {

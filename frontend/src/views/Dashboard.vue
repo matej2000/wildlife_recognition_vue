@@ -348,42 +348,45 @@ export default {
     },
 
     async submitForm(e) {
+      e.preventDefault();
+
       if (this.loaded_file) {
         try {
-          var body = new FormData();
+          const body = new FormData();
           body.append('file', this.loaded_file);
-          const response = await fetch('/api/detect', {
+
+          const response = await fetch('/api/detect/megadetector/', {
             method: 'POST',
             headers: {
               'X-CSRFToken': getCSRFToken()
             },
             body: body,
             credentials: 'include'
-          })
-          const data = await response
-          //console.log(response)
+          });
+
+          const data = await response.json();
 
           if (response.ok) {
-            console.log("Ok")
-            this.error = ""
-            this.error2 = ""
-            this.success = 'Detection successful.'
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            this.result_img.src = url
-            this.show_dropzone = false
-            this.show_results = true
-            this.image_url = url
+            this.error = "";
+            this.error2 = "";
+            this.success = 'Detection successful.';
+
+            const url = `data:image/jpeg;base64,${data.annotated_image}`;
+
+            this.result_img.src = url;
+            this.show_dropzone = false;
+            this.show_results = true;
+            this.image_url = url;
 
           } else {
-            this.error2 = data.error || 'Detection failed'
+            this.error2 = data.error || 'Detection failed';
           }
+
         } catch (err) {
-          this.error2 = 'An error occurred during detection: ' + err
-          console.log(err)
+          this.error2 = 'An error occurred during detection: ' + err;
+          console.log(err);
         }
       }
-      e.preventDefault();
     },
     checkDrop(e) {
       console.log(this.dropzone)

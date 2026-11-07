@@ -1,6 +1,8 @@
 import torch
 from ultralytics import YOLO
 from torchvision import transforms
+import cv2
+import base64
 
 
 class YOLOManager:
@@ -32,4 +34,18 @@ class YOLOManager:
             results = self.model(
                 self.main_transform(x).unsqueeze(0).to(self.device), **kwargs
             )
-        return [result.summary() for result in results]
+        # return [result.summary() for result in results]
+
+        annotated_image = results[0].plot()
+
+        success, buffer = cv2.imencode(".jpg", annotated_image)
+
+        if not success:
+            raise RuntimeError("Could not encode annotated image")
+
+        image_base64 = base64.b64encode(buffer).decode("utf-8")
+
+        return {
+            "predictions": results[0].summary(),
+            "annotated_image": image_base64,
+        }

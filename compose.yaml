@@ -22,10 +22,31 @@ services:
       - "8000"
     networks:
       - backend-network
+      - backend-ml
     volumes:
       - sqlite_data:/data
     environment:
       DATABASE_PATH: /data/db.sqlite3
+
+  ml-service:
+    build: ./models
+    container_name: wildlife-api
+    ports:
+      - "8001:8001"
+    volumes:
+      # - ./weights:/app/weights
+      - ./models/convnext_small-0c510722.pth:/root/.cache/torch/hub/checkpoints/convnext_small-0c510722.pth
+    restart: unless-stopped
+    networks:
+      - backend-ml
+    shm_size: "2gb"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
 volumes:
   sqlite_data:
@@ -35,5 +56,9 @@ networks:
     driver: bridge
 
   backend-network:
+    driver: bridge
+    internal: true
+
+  backend-ml:
     driver: bridge
     internal: true
