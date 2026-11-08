@@ -1,22 +1,34 @@
 <!-- omit in toc -->
-# wildlife_recognition_vue
 
-Extension of my master's thesis, which enables easy use of models trained during my research. This repository contains the frontend made with Vue.js and tailwind css. Which enables a responsive design and fast loading times. The rest of the project is available here:
-- [Backend](https://github.com/matej2000/wildlife_recognition_django)
+# Wildlife recognition dashboard
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django"/>
+  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="Nginx"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch"/>
+  <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" alt="Vue.js"/>
+</p>
+
+Extension of my master's thesis, which enables easy use of models trained during my research. It uses Vue.js on the frontend and Python on the backend. If you are interested in my master's thesis check out the repository below:
+
 - [WS-DETR model](https://github.com/matej2000/rtdetr_pytorch_wsdetr)
 
 <!-- omit in toc -->
+
 ### Table of Contents
 
-- [Website recordings](#website-recordings)
-- [Website screenshots](#website-screenshots)
-  - [Desktop view](#desktop-view)
-  - [Mobile view](#mobile-view)
-- [Recommended IDE Setup](#recommended-ide-setup)
-- [Customize configuration](#customize-configuration)
-- [Project Setup](#project-setup)
-  - [Compile and Hot-Reload for Development](#compile-and-hot-reload-for-development)
-  - [Compile and Minify for Production](#compile-and-minify-for-production)
+- [Wildlife recognition dashboard](#wildlife-recognition-dashboard)
+  - [Table of Contents](#table-of-contents)
+  - [Website recordings](#website-recordings)
+  - [Website screenshots](#website-screenshots)
+    - [Desktop view](#desktop-view)
+    - [Mobile view](#mobile-view)
+  - [Project Setup](#project-setup)
+    - [Build and run for Development](#build-and-run-for-development)
+    - [Build for production](#build-for-production)
+    - [Stop application](#stop-application)
 
 ## Website recordings
 
@@ -54,7 +66,6 @@ Extension of my master's thesis, which enables easy use of models trained during
 <img src="assets/login.png" width="960" />
 <!-- ![Dashboard desktop](assets/login.png) -->
 
-
 ### Mobile view
 
 **Home section:**
@@ -68,29 +79,27 @@ Extension of my master's thesis, which enables easy use of models trained during
 
 <!-- ![Dashboard desktop](assets/login(iPhone%20SE).png) -->
 
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
 ## Project Setup
 
 ```sh
-npm install
+git clone https://github.com/matej2000/wildlife_recognition_vue.git
+cd wildlife_recognition_vue
 ```
 
-### Compile and Hot-Reload for Development
+### Build and run for Development
 
 ```sh
-npm run dev
+docker compose --build -f compose.dev.yaml up
 ```
 
-### Compile and Minify for Production
+### Build for production
 
 ```sh
-npm run build
+docker compose up --build
+```
+
+### Stop application
+
+```sh
+docker compose down
 ```
