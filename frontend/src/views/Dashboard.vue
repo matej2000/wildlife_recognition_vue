@@ -82,38 +82,26 @@
           </button>
           <div v-show="show_dropMenu"
             class="absolute text-lg border-1 mt-3 px-2 py-2 top-20 bg-gray-50 flex flex-col w-[300px] text-start shadow-2xl rounded-xl z-20">
-            <button @click="selectedModel = 'Weakly large'; show_dropMenu = false"
-              class="cursor-pointer text-start hover:bg-gray-200 py-2 px-4 rounded-xl" id="weakly_large">
+            <button @click="selectedModel = 'WDMilfast'; show_dropMenu = false"
+              class="cursor-pointer text-start hover:bg-gray-200 py-2 px-4 rounded-xl" id="wdmilfast">
               <div class="flex flex-row gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-6">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="m21 7.5-2.25-1.313M21 7.5v2.25m0-2.25-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3 2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75 2.25-1.313M12 21.75V19.5m0 2.25-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25" />
                 </svg>
-                <p>Weakly large</p>
+                <p>WDMilfast</p>
               </div>
             </button>
-            <button @click="selectedModel = 'Point small'; show_dropMenu = false"
-              class="cursor-pointer text-start hover:bg-gray-200 px-4 py-2 rounded-xl" id="point_small">
+            <button @click="selectedModel = 'Megadetector'; show_dropMenu = false"
+              class="cursor-pointer text-start hover:bg-gray-200 px-4 py-2 rounded-xl" id="megadetector">
               <div class="flex flex-row gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                   stroke="currentColor" class="size-6">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
                 </svg>
-                <p>Point small</p>
-              </div>
-            </button>
-            <button @click="selectedModel = 'Point large'; show_dropMenu = false"
-              class="cursor-pointer text-start hover:bg-gray-200 px-4 py-2 rounded-xl justify-center items-center"
-              id="point_large">
-              <div class="flex flex-row gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="size-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
-                </svg>
-                <p>Point large</p>
+                <p>Megadetector</p>
               </div>
             </button>
           </div>
@@ -293,7 +281,7 @@ export default {
     const show_results = ref(false)
     const image_url = ref("")
     const show_dropMenu = ref(false)
-    const selectedModel = ref("Point small")
+    const selectedModel = ref("Megadetector")
     const labels = [
       "Badger",
       "Bear",
@@ -335,7 +323,8 @@ export default {
           const body = new FormData();
           body.append('file', this.loaded_file);
 
-          const response = await fetch('/api/detect/wdmilfast/', {
+          let model = this.selectedModel.toLowerCase();
+          const response = await fetch(`/api/detect/${model}/`, {
             method: 'POST',
             headers: {
               'X-CSRFToken': getCSRFToken()

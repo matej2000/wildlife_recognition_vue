@@ -34,7 +34,7 @@ class WDMilFastManager:
             ]
         )
         self.postprocessor = WildlifeMilPostProcessor(
-            10, [640, 640], [224, 224], 0.5, "xyxy", "xyxy"
+            10, [640, 640], [224, 224], 0.3, "xyxy", "xyxy"
         )
 
     def load(
