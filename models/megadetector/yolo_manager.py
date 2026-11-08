@@ -34,7 +34,6 @@ class YOLOManager:
             results = self.model(
                 self.main_transform(x).unsqueeze(0).to(self.device), **kwargs
             )
-        # return [result.summary() for result in results]
 
         annotated_image = results[0].plot()
 

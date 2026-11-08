@@ -157,14 +157,6 @@
                 <div class="m-auto border-1 border-black bg-white rounded-2xl mt-10 p-5">
 
                   <div class="flex flex-row">
-                    <!-- <div class="absolute ml-18 mt-[-15px]">
-                      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <span class="sr-only">Close menu</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div> -->
                     <div ref="div_preview" class="basis-1/4 hidden sm:block">
                       <img ref="preview" id="preview" class="w-[100px] h-[100px]" />
                     </div>
@@ -202,8 +194,6 @@
                 <div class="m-auto w-fit mt-10">
                   <button type="submit"
                     class="cursor-pointer border-2 border-black px-4 py-3 rounded-md text-white bg-black font-bold hover:bg-white hover:text-black">Detect</button>
-
-                  <!-- <button type="submit" class=" hover:text-gray-600 cursor-pointer font-bold text-black bg-gradient-to-r from-teal-200 to-lime-200 hover:from-teal-100 hover:to-lime-100 rounded-lg text-xs sm:text-sm px-2 sm:px-5 py-2.5 text-center ">Detect</button>            -->
                 </div>
               </div>
               <!-- End of loaded file preview -->
@@ -212,16 +202,6 @@
 
 
         </div>
-
-        <!-- <h1>Welcome to the home page</h1>
-        <div v-if="authStore.isAuthenticated">
-          <p>Hi there {{ authStore.user?.username }}!</p>
-          <p>You are logged in.</p>
-          <button @click="logout">Logout</button>
-        </div>
-        <p v-else>
-          You are not logged in. <router-link to="/login">Login</router-link>
-        </p> -->
         <div v-show="show_results" class="h-screen flex justify-center items-center mt-[-64px]">
           <div>
             <div class="m-auto max-w-[600px] border-2 border-dashed rounded-xl">
@@ -355,7 +335,7 @@ export default {
           const body = new FormData();
           body.append('file', this.loaded_file);
 
-          const response = await fetch('/api/detect/megadetector/', {
+          const response = await fetch('/api/detect/wdmilfast/', {
             method: 'POST',
             headers: {
               'X-CSRFToken': getCSRFToken()

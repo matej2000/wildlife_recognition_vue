@@ -96,7 +96,6 @@ class WildlifeDetectorMIL(nn.Module):
     def forward(self, x1, x2):
         objects = self.yolo(x1, verbose=False, conf=0)
         features = self.resnet(x2)
-        print([x.boxes.xyxy for x in objects])
         roi_pooled = roi_align(
             features,
             [x.boxes.xyxy for x in objects],
@@ -110,10 +109,10 @@ class WildlifeDetectorMIL(nn.Module):
 
         boxes = [x.boxes.xyxy for x in objects]
         scores = [x.boxes.conf for x in objects]
-        print(boxes, scores)
-        return {
+        outputs = {
             "boxes": boxes,
             "obj_confs": scores,
             "pred_logits": pred_logits,
             "det_logits": det_logits,
         }
+        return outputs

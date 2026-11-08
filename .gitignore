@@ -30,6 +30,7 @@ coverage
 *.tsbuildinfo
 
 *.pt
+*.pth
 
 __pycache__
 .vscode
