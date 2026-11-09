@@ -45,11 +45,11 @@
             <div class="flex flex-row justify-center gap-5 items-center mt-2">
               <input id="default-range" type="range" v-model="maxDetections" min="1" max="100"
                 class="w-[70%]  h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
-              <input type="number" v-model="maxDetections" min="1" max="100" class="w-[50px]">
+              <input type="number" v-model="maxDetections" min="1" max="50" class="w-[50px]">
             </div>
           </div>
           <div>
-            <p class="mt-10 ml-2 font-bold">Confidence threshold:</p>
+            <p class="mt-10 ml-2 font-bold">score threshold:</p>
             <div class="flex flex-row justify-center gap-5 items-center mt-2">
               <input id="default-range" type="range" v-model="confThreshold" min="0" max="1" step="0.1"
                 class="w-[70%]  h-2 bg-gray-300 rounded-lg appearance-none cursor-pointer">
@@ -193,7 +193,21 @@
         <div v-show="show_results" class="h-screen flex justify-center items-center mt-[-64px]">
           <div>
             <div class="m-auto max-w-[600px] border-2 border-dashed rounded-xl">
-              <img class="m-auto" ref="result_img" />
+              <div v-if="originalImageUrl" class="relative m-auto max-w-[800px] w-full">
+                <img :src="originalImageUrl" class="block w-full h-auto" alt="Animal detection" />
+                <svg v-if="imageWidth && imageHeight" class="absolute inset-0 w-full h-full"
+                  :viewBox="`0 0 ${imageWidth} ${imageHeight}`" preserveAspectRatio="none">
+                  <g v-for="(detection, index) in filteredDetections" :key="index">
+                    <rect :x="detection.box[0]" :y="detection.box[1]" :width="detection.box[2] - detection.box[0]"
+                      :height="detection.box[3] - detection.box[1]" fill="none" stroke="#00ff00" stroke-width="4" />
+                    <text :x="detection.box[0]" :y="Math.max(20, detection.box[1] - 8)" fill="white" font-size="24"
+                      font-weight="bold" paint-order="stroke" stroke="black" stroke-width="4">
+                      {{ detection.label }}
+                      {{ (detection.score * 100).toFixed(0) }}%
+                    </text>
+                  </g>
+                </svg>
+              </div>
             </div>
             <div class="text-center mt-3">
               <p>{{ error2 }}</p>
@@ -295,15 +309,19 @@ export default {
       "Wild boar"
     ];
     const selected_labels = ref([true, true, true, true, true, true, true, true, true, true])
-    const maxDetections = ref("50")
+    const maxDetections = ref("25")
     const confThreshold = ref("0.5")
     const showSettings = ref(window.innerWidth >= 1024);
+    const originalImageUrl = ref(null)
+    const detections = ref([])
+    const imageWidth = ref(null)
+    const imageHeight = ref(null)
 
     return {
       authStore, router, loaded_file, preview, bar, div_preview,
       dropzone, current_color, error, error2, success, result_img, show_dropzone,
       show_results, show_dropMenu, selectedModel, labels, maxDetections, confThreshold,
-      showSettings, selected_labels
+      showSettings, selected_labels, originalImageUrl, detections, imageWidth, imageHeight
     }
   },
   methods: {
@@ -318,43 +336,56 @@ export default {
     async submitForm(e) {
       e.preventDefault();
 
-      if (this.loaded_file) {
-        try {
-          const body = new FormData();
-          body.append('file', this.loaded_file);
+      if (!this.loaded_file) return;
 
-          let model = this.selectedModel.toLowerCase();
-          const response = await fetch(`/api/detect/${model}/`, {
-            method: 'POST',
-            headers: {
-              'X-CSRFToken': getCSRFToken()
-            },
-            body: body,
-            credentials: 'include'
-          });
+      try {
+        const body = new FormData();
+        body.append('file', this.loaded_file);
 
-          const data = await response.json();
+        const model = this.selectedModel.toLowerCase();
 
-          if (response.ok) {
-            this.error = "";
-            this.error2 = "";
-            this.success = 'Detection successful.';
+        const response = await fetch(`/api/detect/${model}/`, {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': getCSRFToken()
+          },
+          body: body,
+          credentials: 'include'
+        });
 
-            const url = `data:image/jpeg;base64,${data.annotated_image}`;
+        const data = await response.json();
+        console.log(data)
 
-            this.result_img.src = url;
-            this.show_dropzone = false;
-            this.show_results = true;
-            this.image_url = url;
-
-          } else {
-            this.error2 = data.error || 'Detection failed';
-          }
-
-        } catch (err) {
-          this.error2 = 'An error occurred during detection: ' + err;
-          console.log(err);
+        if (!response.ok) {
+          this.error2 = data.error || 'Detection failed';
+          return;
         }
+
+        this.error = "";
+        this.error2 = "";
+        this.success = 'Detection successful.';
+
+        // Display the original image
+        if (this.originalImageUrl) {
+          URL.revokeObjectURL(this.originalImageUrl);
+        }
+
+        this.originalImageUrl = URL.createObjectURL(this.loaded_file);
+
+        // Store detection results
+        this.detections = data.detections;
+
+        // Store original image dimensions
+        this.imageWidth = data.image_width;
+        this.imageHeight = data.image_height;
+
+        // Change dashboard view
+        this.show_dropzone = false;
+        this.show_results = true;
+
+      } catch (err) {
+        this.error2 = 'An error occurred during detection: ' + err;
+        console.error(err);
       }
     },
     checkDrop(e) {
@@ -441,6 +472,26 @@ export default {
     await this.authStore.fetchUser()
     if (!this.authStore.isAuthenticated) {
       this.$router.push('/login')
+    }
+  },
+  computed: {
+    filteredDetections() {
+
+      let results = this.detections.filter(detection => {
+        const index = this.labels.indexOf(detection.label)
+        return index === -1 || this.selected_labels[index]
+      })
+
+      results = results.filter(detection => {
+        return detection.score >= Number(this.confThreshold)
+      })
+
+      results.sort((a, b) => {
+        return b.score - a.score
+      })
+
+      results = results.slice(0, Number(this.maxDetections))
+      return results
     }
   },
   components: {

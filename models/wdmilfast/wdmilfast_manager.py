@@ -34,7 +34,7 @@ class WDMilFastManager:
             ]
         )
         self.postprocessor = WildlifeMilPostProcessor(
-            10, [640, 640], [224, 224], 0.3, "xyxy", "xyxy"
+            10, [640, 640], [224, 224], 0, "xyxy", "xyxy"
         )
 
     def load(
@@ -67,69 +67,92 @@ class WDMilFastManager:
                 self.model.resnet_transform(x).unsqueeze(0).to(self.device),
             )
         results = self.postprocessor(results, x.size[0], x.size[1], True, True)
-        new_image = draw_predictions(x, results[0])
+        # new_image = draw_predictions(x, results[0])
 
-        buffer = io.BytesIO()
-        new_image.save(buffer, format="JPEG")
+        # buffer = io.BytesIO()
+        # new_image.save(buffer, format="JPEG")
 
-        image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        # image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        class_mappings = {
+            2: "Red deer",
+            1: "Wild boar",
+            5: "Mustelid",
+            6: "Fox",
+            7: "Badger",
+            4: "Bird",
+            8: "Bear",
+            3: "Roe deer",
+            9: "Chamois",
+            0: "Squirrel",
+        }
+        detections = []
+        for i in range(len(results[0]["boxes"])):
+            detections.append(
+                {
+                    "label": class_mappings[results[0]["labels"][i].cpu().item()],
+                    "score": results[0]["scores"][i].cpu().item(),
+                    "box": results[0]["boxes"].detach().cpu().tolist()[0],
+                }
+            )
 
         return {
-            "predictions": results[0],
-            "annotated_image": image_base64,
+            "image_width": x.size[0],
+            "image_height": x.size[1],
+            "detections": detections,
+            # "annotated_image": image_base64,
         }
 
 
-def draw_predictions(image, predictions, class_names=None):
-    """
-    Args:
-        image: PIL Image.
-        predictions: Dictionary containing boxes, scores, labels.
-                     Can also be a single-image output from your postprocessor.
-        class_names: Optional list of class names.
+# def draw_predictions(image, predictions, class_names=None):
+#     """
+#     Args:
+#         image: PIL Image.
+#         predictions: Dictionary containing boxes, scores, labels.
+#                      Can also be a single-image output from your postprocessor.
+#         class_names: Optional list of class names.
 
-    Returns:
-        PIL Image with bounding boxes and labels drawn.
-    """
-    image = image.copy()
-    draw = ImageDraw.Draw(image)
+#     Returns:
+#         PIL Image with bounding boxes and labels drawn.
+#     """
+#     image = image.copy()
+#     draw = ImageDraw.Draw(image)
 
-    try:
-        font = ImageFont.truetype("arial.ttf", 20)
-    except OSError:
-        font = ImageFont.load_default()
+#     try:
+#         font = ImageFont.truetype("arial.ttf", 20)
+#     except OSError:
+#         font = ImageFont.load_default()
 
-    boxes = predictions["boxes"]
-    scores = predictions["scores"]
-    labels = predictions["labels"]
+#     boxes = predictions["boxes"]
+#     scores = predictions["scores"]
+#     labels = predictions["labels"]
 
-    for box, score, label in zip(boxes, scores, labels):
-        x1, y1, x2, y2 = map(float, box)
+#     for box, score, label in zip(boxes, scores, labels):
+#         x1, y1, x2, y2 = map(float, box)
 
-        label = int(label)
-        score = float(score)
+#         label = int(label)
+#         score = float(score)
 
-        class_name = class_names[label] if class_names is not None else str(label)
+#         class_name = class_names[label] if class_names is not None else str(label)
 
-        text = f"{class_name}: {score:.2f}"
+#         text = f"{class_name}: {score:.2f}"
 
-        # Draw bounding box
-        draw.rectangle(
-            [x1, y1, x2, y2],
-            outline="red",
-            width=3,
-        )
+#         # Draw bounding box
+#         draw.rectangle(
+#             [x1, y1, x2, y2],
+#             outline="red",
+#             width=3,
+#         )
 
-        # Draw label background
-        text_bbox = draw.textbbox((x1, y1), text, font=font)
-        draw.rectangle(text_bbox, fill="red")
+#         # Draw label background
+#         text_bbox = draw.textbbox((x1, y1), text, font=font)
+#         draw.rectangle(text_bbox, fill="red")
 
-        # Draw label text
-        draw.text(
-            (x1, y1),
-            text,
-            fill="white",
-            font=font,
-        )
+#         # Draw label text
+#         draw.text(
+#             (x1, y1),
+#             text,
+#             fill="white",
+#             font=font,
+#         )
 
-    return image
+#     return image
