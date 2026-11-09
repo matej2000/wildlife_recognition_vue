@@ -19,5 +19,21 @@ services:
     environment:
       DATABASE_PATH: /data/db.sqlite3
 
+  ml-service:
+    build: ./models
+    container_name: wildlife-api
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./models/convnext_small-0c510722.pth:/root/.cache/torch/hub/checkpoints/convnext_small-0c510722.pth
+    shm_size: "2gb"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
 volumes:
   sqlite_data:
